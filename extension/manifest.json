@@ -1,16 +1,24 @@
 {
-   "content_scripts": [ {
-      "css": [ "my-style.css" ],
-      "js": [ "my-style.js" ],
-      "matches": [ "http://*/*", "https://*/*" ],
-      "run_at": "document_start"
-   } ],
-   "description": "Insert custom CSS into pages, immediately see the visual results, and have that CSS persist for future visits.",
-   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDe57JvoGt1RTEdYcGFr497pDjAlTXjhfSx6TKRwYShbxTEo8MHKI/uExlj5q0E/QXbx5mu0k8OCL6BC9vXMhjZCxD+17MrlHn5TDQB2mk78qq8ha8q5Sr9X3ZI1A8cOvLd79DJ/gzfXmsvD9wfrucUR27xImZcSUk8E9+1oe4NQIDAQAB",
-   "manifest_version": 2,
-   "name": "My Style",
-   "update_url": "http://clients2.google.com/service/update2/crx",
-   "permissions": [ "storage"],
-   "version": "0.3"
+    "content_scripts": [{
+        "css": ["my-style.css"],
+        "js": ["my-style.js"],
+        "matches": ["http://*/*", "https://*/*"],
+        "run_at": "document_start"
+    }],
+    "description": "Auto customize CSS when visit any page. Hotkey: Ctrl+M",
+    "manifest_version": 2,
+    "name": "My custom CSS",
+    "short_name": "My CSS",
+    "permissions": ["storage","tabs", "*://*/*"],
+    "version": "1.0.1",
+    "icons": {
+        "16": "16.png",
+        "48": "48.png",
+        "128": "128.png"
+    },
+    "browser_action": {
+        "default_title": "My CSS",
+        "default_popup": "popup.html",
+        "default_icon": "icon.png"
+    }
 }
-

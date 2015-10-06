@@ -5,11 +5,11 @@
   position: fixed !important;
   top: 0 !important;
   right: 0 !important;
-  width: 300px !important;
+  width: 250px !important;
   height: 100% !important;
 
   /* Should be visible above all other elements. */
-  z-index: 5000000 !important;
+  z-index: 2000000000 !important;
   overflow: auto !important;
   outline: none !important;
   padding: 10px 20px !important;
