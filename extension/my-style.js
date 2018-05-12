@@ -1,5 +1,5 @@
 // asynchronous self-invoking function to not pollute global namespace
-(function(window, document, undefined) {
+(function() {
   const TAB_KEY_CODE = 9;
   const M_KEY_CODE = 77;
 
@@ -30,11 +30,6 @@
       }
     };
   }
-
-  /* Remove whitespace on the edges of this string. */
-  String.prototype.trim = () => {
-    return this.replace(/(^\s+|\s+$)/g, '');
-  };
 
   window.addEventListener('DOMContentLoaded', event => {
     let key = 'mystyle_' + window.location.hostname;
@@ -185,4 +180,4 @@
       });
     });
   });
-})(this, this.document);
+})();
