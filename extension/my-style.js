@@ -18,15 +18,11 @@
    * timeout -- the timeout to throttle for
    */
   function throttle(fn, timeout) {
-    return function throttledFn() {
+    return function throttledFn(...args) {
       if (!throttledFn.timer) {
-        // keep track of the arguments to the function and the context
-        var args = arguments;
-        var that = this;
-
         // call the function after the provided timeout
         throttledFn.timer = setTimeout(() => {
-          fn.apply(that, args);
+          fn(...args);
 
           // finished calling the function; unset the timer
           throttledFn.timer = undefined;
