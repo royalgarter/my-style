@@ -40,11 +40,11 @@
     return this.replace(/(^\s+|\s+$)/g, '');
   };
 
-  var key = 'mystyle_' + window.location.hostname;
-  chrome.storage.sync.get(key, function(my_css) {
-    console.log(JSON.stringify(my_css));
+  window.addEventListener('DOMContentLoaded', function(event) {
+    var key = 'mystyle_' + window.location.hostname;
+    chrome.storage.sync.get(key, function(my_css) {
+      console.log(JSON.stringify(my_css));
 
-    window.addEventListener('DOMContentLoaded', function(event) {
       var head = document.getElementsByTagName('head')[0];
       var body = document.body;
 
