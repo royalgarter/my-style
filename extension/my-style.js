@@ -25,7 +25,7 @@
         var that = this;
 
         // call the function after the provided timeout
-        throttledFn.timer = setTimeout(function() {
+        throttledFn.timer = setTimeout(() => {
           fn.apply(that, args);
 
           // finished calling the function; unset the timer
@@ -36,13 +36,13 @@
   }
 
   /* Remove whitespace on the edges of this string. */
-  String.prototype.trim = function() {
+  String.prototype.trim = () => {
     return this.replace(/(^\s+|\s+$)/g, '');
   };
 
-  window.addEventListener('DOMContentLoaded', function(event) {
+  window.addEventListener('DOMContentLoaded', event => {
     var key = 'mystyle_' + window.location.hostname;
-    chrome.storage.sync.get(key, function(my_css) {
+    chrome.storage.sync.get(key, my_css => {
       console.log(JSON.stringify(my_css));
 
       var head = document.getElementsByTagName('head')[0];
@@ -64,7 +64,7 @@
       textarea.placeholder = '/* Enter your styles here. */';
 
       // alt + click on an element adds its selector to the textarea
-      body.addEventListener('click', function(event) {
+      body.addEventListener('click', event => {
         // ensure textarea is actually displayed
         if (
           textarea.style.display.indexOf('none') === -1 &&
@@ -138,12 +138,12 @@
       });
 
       /* Save styles persistently in local storage. */
-      var saveStyles = throttle(function() {
+      var saveStyles = throttle(() => {
         localStorage.myStyle = style.innerHTML;
         var key = 'mystyle_' + window.location.hostname;
         var obj = {};
         obj[key] = style.innerHTML;
-        chrome.storage.sync.set(obj, function() {});
+        chrome.storage.sync.set(obj);
       }, 500);
 
       /* Updates styles with content in textarea and saves styles. */
@@ -157,7 +157,7 @@
       textarea.addEventListener('change', updateAndSaveStyles);
 
       // pressing tab should insert spaces instead of focusing another element
-      textarea.addEventListener('keydown', function(event) {
+      textarea.addEventListener('keydown', event => {
         var value = textarea.value;
         var caret = textarea.selectionStart;
 
@@ -177,7 +177,7 @@
         }
       });
 
-      window.addEventListener('keydown', function(event) {
+      window.addEventListener('keydown', event => {
         // control + m toggles text area
         if (event.ctrlKey && event.keyCode === M_KEY_CODE) {
           if (textarea.style.display == 'none') {
