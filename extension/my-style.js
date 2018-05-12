@@ -1,13 +1,13 @@
 // asynchronous self-invoking function to not pollute global namespace
 (function(window, document, undefined) {
-  var TAB_KEY_CODE = 9;
-  var M_KEY_CODE = 77;
+  const TAB_KEY_CODE = 9;
+  const M_KEY_CODE = 77;
 
-  var SOFT_TAB = '    ';
-  var SOFT_TAB_LENGTH = SOFT_TAB.length;
+  const SOFT_TAB = '    ';
+  const SOFT_TAB_LENGTH = SOFT_TAB.length;
 
-  var ONLY_WHITESPACE_REGEX = /^\s*$/;
-  var WHITESPACE_SPLIT_REGEX = /\s+$/g;
+  const ONLY_WHITESPACE_REGEX = /^\s*$/;
+  const WHITESPACE_SPLIT_REGEX = /\s+$/g;
 
   /* Throttle the given function, condensing multiple calls into one call after
    * the given timeout period. In other words, allow at most one call to go
@@ -37,15 +37,15 @@
   };
 
   window.addEventListener('DOMContentLoaded', event => {
-    var key = 'mystyle_' + window.location.hostname;
+    let key = 'mystyle_' + window.location.hostname;
     chrome.storage.sync.get(key, my_css => {
       console.log(JSON.stringify(my_css));
 
-      var head = document.getElementsByTagName('head')[0];
-      var body = document.body;
+      let head = document.getElementsByTagName('head')[0];
+      let body = document.body;
 
-      var style = document.createElement('style');
-      var textarea = document.createElement('textarea');
+      let style = document.createElement('style');
+      let textarea = document.createElement('textarea');
 
       // hide textarea by default
       textarea.style.display = 'none';
@@ -67,14 +67,14 @@
           event.target.id !== textarea.id &&
           event.altKey
         ) {
-          var i = 0;
-          var target = event.target;
-          var elemClass = target.className.split(' ') || '';
-          var stylesList = [];
-          var existingStyles = '';
-          var selector = '';
-          var cssStatement;
-          var textToAdd;
+          let i = 0;
+          let target = event.target;
+          let elemClass = target.className.split(' ') || '';
+          let stylesList = [];
+          let existingStyles = '';
+          let selector = '';
+          let cssStatement;
+          let textToAdd;
 
           // selector starts with the tag
           selector += target.tagName.toLowerCase();
@@ -134,10 +134,10 @@
       });
 
       /* Save styles persistently in local storage. */
-      var saveStyles = throttle(() => {
+      let saveStyles = throttle(() => {
         localStorage.myStyle = style.innerHTML;
-        var key = 'mystyle_' + window.location.hostname;
-        var obj = {};
+        let key = 'mystyle_' + window.location.hostname;
+        let obj = {};
         obj[key] = style.innerHTML;
         chrome.storage.sync.set(obj);
       }, 500);
@@ -154,8 +154,8 @@
 
       // pressing tab should insert spaces instead of focusing another element
       textarea.addEventListener('keydown', event => {
-        var value = textarea.value;
-        var caret = textarea.selectionStart;
+        let value = textarea.value;
+        let caret = textarea.selectionStart;
 
         // if tab is pressed, insert four spaces
         if (event.keyCode === TAB_KEY_CODE) {
