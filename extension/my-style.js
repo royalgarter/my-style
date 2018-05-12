@@ -66,8 +66,11 @@
       // alt + click on an element adds its selector to the textarea
       body.addEventListener('click', function(event) {
         // ensure textarea is actually displayed
-        if (textarea.style.display.indexOf('none') === -1 &&
-          event.target.id !== textarea.id && event.altKey) {
+        if (
+          textarea.style.display.indexOf('none') === -1 &&
+          event.target.id !== textarea.id &&
+          event.altKey
+        ) {
           var i = 0;
           var target = event.target;
           var elemClass = target.className.split(' ') || '';
@@ -99,11 +102,13 @@
             // keep track of CSS properties already defined in style attribute
             for (i = 0; i < stylesList.length; i++) {
               // condense mutliple whitespace into one space
-              cssStatement = stylesList[i].split(WHITESPACE_SPLIT_REGEX)
-                .join(' ').trim();
+              cssStatement = stylesList[i]
+                .split(WHITESPACE_SPLIT_REGEX)
+                .join(' ')
+                .trim();
 
               if (!ONLY_WHITESPACE_REGEX.test(cssStatement)) {
-                existingStyles += SOFT_TAB + cssStatement.toLowerCase() + ";\n";
+                existingStyles += SOFT_TAB + cssStatement.toLowerCase() + ';\n';
               }
             }
           }
@@ -112,9 +117,9 @@
           if (selector) {
             // add existing styles in braces
             if (existingStyles) {
-              existingStyles = "{\n" + existingStyles + "}";
+              existingStyles = '{\n' + existingStyles + '}';
             } else {
-              existingStyles = "{\n\n}";
+              existingStyles = '{\n\n}';
             }
 
             textToAdd = '\n' + selector + ' ' + existingStyles;
@@ -122,8 +127,10 @@
 
             // highlight added text for easy removal
             textarea.focus();
-            textarea.setSelectionRange(textarea.value.length - textToAdd.length,
-              textarea.value.length);
+            textarea.setSelectionRange(
+              textarea.value.length - textToAdd.length,
+              textarea.value.length
+            );
           }
 
           event.preventDefault();
@@ -133,11 +140,10 @@
       /* Save styles persistently in local storage. */
       var saveStyles = throttle(function() {
         localStorage.myStyle = style.innerHTML;
-        var key = "mystyle_" + window.location.hostname;
+        var key = 'mystyle_' + window.location.hostname;
         var obj = {};
         obj[key] = style.innerHTML;
-        chrome.storage.sync.set(obj, function() {
-        });
+        chrome.storage.sync.set(obj, function() {});
       }, 500);
 
       /* Updates styles with content in textarea and saves styles. */
@@ -157,12 +163,14 @@
 
         // if tab is pressed, insert four spaces
         if (event.keyCode === TAB_KEY_CODE) {
-          textarea.value = value.substring(0, caret) + SOFT_TAB +
-            value.substring(caret);
+          textarea.value =
+            value.substring(0, caret) + SOFT_TAB + value.substring(caret);
 
           // move caret to after soft tab
-          textarea.setSelectionRange(caret + SOFT_TAB_LENGTH, caret +
-            SOFT_TAB_LENGTH);
+          textarea.setSelectionRange(
+            caret + SOFT_TAB_LENGTH,
+            caret + SOFT_TAB_LENGTH
+          );
 
           // prevent default tab action that shifts focus to the next element
           event.preventDefault();
