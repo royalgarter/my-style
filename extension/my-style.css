@@ -15,10 +15,10 @@
   outline: none !important;
   padding: 5px 8px !important;
 
-  border-top: 0 !important;
-  border-bottom: 0 !important;
-  border-right: 0 !important;
-  border-left: 1px solid #ccc !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  resize: none !important;
+  box-shadow: rgba(0, 0, 0, 0.2) -2px 0px 44px, rgba(0, 0, 0, 0.2) -4px 0px 66px !important;
 
   /* Dark code font with light background. */
   color: #222 !important;
