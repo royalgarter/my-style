@@ -109,6 +109,27 @@
     return rules.map(x => indent + x.trim()).join('\n');
   }
 
+  function dontScrollParent(element /*: HTMLElement */) {
+    element.addEventListener('mousewheel', event => {
+      let delta = event.wheelDelta || -event.detail;
+      let target = event.target;
+
+      if (delta > 0 && target.scrollTop <= 0) {
+        // prevent scroll up
+        event.preventDefault();
+        return;
+      }
+
+      if (
+        delta < 0 &&
+        target.scrollTop >= target.scrollHeight - target.offsetHeight
+      ) {
+        // prevent scroll down
+        event.preventDefault();
+      }
+    });
+  }
+
   function buildTextAreaEditor(
     css /*: string */,
     onChange /*: Function */
@@ -218,5 +239,8 @@
         }
       }
     });
+
+    // prevent page scroll when scroll inside the editor
+    dontScrollParent($editor);
   });
 })();
