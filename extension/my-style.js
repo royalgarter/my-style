@@ -9,25 +9,27 @@
   const STORAGE_KEY = 'mystyle_' + window.location.hostname;
 
   /**
-   * Throttle the given function, condensing multiple calls into one call after
-   * the given timeout period. In other words, allow at most one call to go
-   * through per timeout period. Returns the throttled function.
-   *
-   * Arguments:
-   * fn -- the function to throttle
-   * timeout -- the timeout to throttle for
+   * Returns a function, that, as long as it continues to be invoked, will not
+   * be triggered. The function will be called after it stops being called for
+   * N milliseconds. If `immediate` is passed, trigger the function on the
+   * leading edge, instead of the trailing.
    */
-  function throttle(fn, timeout) {
-    return function throttledFn(...args) {
-      if (!throttledFn.timer) {
-        // call the function after the provided timeout
-        throttledFn.timer = setTimeout(() => {
-          fn(...args);
+  function debounce(fn /*: Function */, timeout /*: number */) /*: Function */ {
+    let timer = null;
 
-          // finished calling the function; unset the timer
-          throttledFn.timer = undefined;
-        }, timeout);
+    return function debouncedFn(...args) {
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
       }
+
+      timer = setTimeout(() => {
+        // call the function after the provided timeout
+        fn(...args);
+
+        // finished calling the function; unset the timer
+        timer = null;
+      }, timeout);
     };
   }
 
@@ -47,13 +49,13 @@
    * Save styles persistently in local storage.
    */
   function saveStyles(css /*: string */, key /*: string */ = STORAGE_KEY) {
-    if (!saveStyles.throttledFn) {
-      saveStyles.throttledFn = throttle(css => {
+    if (!saveStyles.debouncedFn) {
+      saveStyles.debouncedFn = debounce(css => {
         chrome.storage.sync.set({ [key]: css });
       }, 500);
     }
 
-    saveStyles.throttledFn(css);
+    saveStyles.debouncedFn(css);
   }
 
   /**
