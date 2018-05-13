@@ -3,7 +3,7 @@
   const TAB_KEY_CODE = 9;
   const M_KEY_CODE = 77;
 
-  const SOFT_TAB = '    ';
+  const SOFT_TAB = '\t';
   const SOFT_TAB_LENGTH = SOFT_TAB.length;
 
   const STORAGE_KEY = 'mystyle_' + window.location.hostname;
@@ -164,7 +164,7 @@
       let value = $textarea.value;
       let caret = $textarea.selectionStart;
 
-      // if tab is pressed, insert four spaces
+      // if tab is pressed, insert 1 tab
       if (event.keyCode === TAB_KEY_CODE) {
         $textarea.value =
           value.substring(0, caret) + SOFT_TAB + value.substring(caret);

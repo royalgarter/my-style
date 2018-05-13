@@ -29,4 +29,6 @@
   /* Maintain left-to-right direction even on right-to-left websites. */
   direction: ltr !important;
   text-align: left !important;
+
+  tab-size: 2 !important;
 }
