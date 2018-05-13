@@ -13,7 +13,7 @@
   z-index: 2000000000 !important;
   overflow: auto !important;
   outline: none !important;
-  padding: 10px 20px !important;
+  padding: 5px 8px !important;
 
   border-top: 0 !important;
   border-bottom: 0 !important;
@@ -23,9 +23,9 @@
   /* Dark code font with light background. */
   color: #222 !important;
   background: #fcfcfc !important;
-  font: 13px "Inconsolata", "Consolas", "Menlo", "Monaco",
-    "Lucida Console", "Courier New", "Courier", monospace !important;
-	
+  font: 11px 'Inconsolata', 'Consolas', 'Menlo', 'Monaco', 'Lucida Console',
+    'Courier New', 'Courier', monospace !important;
+
   /* Maintain left-to-right direction even on right-to-left websites. */
   direction: ltr !important;
   text-align: left !important;
