@@ -56,6 +56,16 @@
     saveStyles.throttledFn(css);
   }
 
+  /**
+   * Make all rules !important
+   */
+  function importantize(css /*: string */) /*: string */ {
+    return (css || '')
+      .replace(/;/g, '!important;')
+      .replace(/([^;\s\n])([\s\n]*})/g, '$1!important$2')
+      .replace(/(!important([\s\n]*))!important/g, '$1');
+  }
+
   function applyStyles(css /*: string */ = '') {
     if (!applyStyles.$style) {
       let $style = document.createElement('style');
@@ -183,11 +193,11 @@
   window.addEventListener('DOMContentLoaded', async event => {
     let css = await loadStyles();
 
-    applyStyles(css);
+    applyStyles(importantize(css));
 
     let $editor = buildTextAreaEditor(css, css => {
       /* Updates styles with content in textarea and saves styles. */
-      applyStyles(css);
+      applyStyles(importantize(css));
       saveStyles(css);
     });
 
