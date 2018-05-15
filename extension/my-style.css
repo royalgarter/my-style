@@ -7,25 +7,28 @@
   right: 0 !important;
   width: 250px !important;
   height: 100% !important;
+  box-sizing: border-box !important;
 
   /* Should be visible above all other elements. */
   z-index: 2000000000 !important;
   overflow: auto !important;
   outline: none !important;
-  padding: 10px 20px !important;
+  padding: 5px 8px !important;
 
-  border-top: 0 !important;
-  border-bottom: 0 !important;
-  border-right: 0 !important;
-  border-left: 1px solid #ccc !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  resize: none !important;
+  box-shadow: rgba(0, 0, 0, 0.2) -2px 0px 44px, rgba(0, 0, 0, 0.2) -4px 0px 66px !important;
 
   /* Dark code font with light background. */
   color: #222 !important;
   background: #fcfcfc !important;
-  font: 13px "Inconsolata", "Consolas", "Menlo", "Monaco",
-    "Lucida Console", "Courier New", "Courier", monospace !important;
-	
+  font: 11px 'Inconsolata', 'Consolas', 'Menlo', 'Monaco', 'Lucida Console',
+    'Courier New', 'Courier', monospace !important;
+
   /* Maintain left-to-right direction even on right-to-left websites. */
   direction: ltr !important;
   text-align: left !important;
+
+  tab-size: 2 !important;
 }
